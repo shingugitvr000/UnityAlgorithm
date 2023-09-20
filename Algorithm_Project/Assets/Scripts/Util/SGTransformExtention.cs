@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public static class SGTansformExtention
+public static class SGTransformExtention 
 {
-    public static void ResetTransfrom(this Transform self, bool worldSpace = false)
+    public static void ResetTransform(this Transform self, bool worldSpace = false)
     {
         self.ResetPosition(worldSpace);
         self.ResetRotation(worldSpace);
         self.ResetLocalScale();
     }
+
     public static void ResetPosition(this Transform self, bool worldSpace = false)
     {
-        if(worldSpace)
+        if (worldSpace)
         {
             self.position = SGUtil.VECTOR3_ZERO;
         }
@@ -22,6 +22,7 @@ public static class SGTansformExtention
             self.localPosition = SGUtil.VECTOR3_ZERO;
         }
     }
+
     public static void ResetRotation(this Transform self, bool worldSpace = false)
     {
         if (worldSpace)
@@ -33,21 +34,25 @@ public static class SGTansformExtention
             self.localRotation = Quaternion.identity;
         }
     }
+
     public static void ResetLocalScale(this Transform self)
     {
         self.localScale = SGUtil.VECTOR3_ONE;
     }
-    public static void SetEulerAnlesX(this Transform self , float x)
+
+    public static void SetEulerAnglesX(this Transform self, float x)
     {
         Vector3 selfAngles = self.eulerAngles;
         self.rotation = Quaternion.Euler(x, selfAngles.y, selfAngles.z);
     }
-    public static void SetEulerAnlesY(this Transform self, float y)
+
+    public static void SetEulerAnglesY(this Transform self, float y)
     {
         Vector3 selfAngles = self.eulerAngles;
         self.rotation = Quaternion.Euler(selfAngles.x, y, selfAngles.z);
     }
-    public static void SetEulerAnlesZ(this Transform self, float z)
+
+    public static void SetEulerAnglesZ(this Transform self, float z)
     {
         Vector3 selfAngles = self.eulerAngles;
         self.rotation = Quaternion.Euler(selfAngles.x, selfAngles.y, z);
