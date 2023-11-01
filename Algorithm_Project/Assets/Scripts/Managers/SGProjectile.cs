@@ -45,10 +45,14 @@ public class SGProjectile : MonoBehaviour
     public float _DeadTimer = 30.0f;
     private float _DeadCheckTimer;
 
+    private SGProjectileGroup projectileGroup;
+
     private void Awake()
     {
         transformCache = transform;
         _DeadCheckTimer = 0.0f;
+
+        projectileGroup = GetComponent<SGProjectileGroup>();
     }
 
     public virtual void SetActive(bool isActive)
@@ -254,6 +258,11 @@ public class SGProjectile : MonoBehaviour
 
         // 새로운 포지션과 로테이션 설정
         transformCache.SetPositionAndRotation(newPosition, newRotation);
+
+        if(projectileGroup != null)
+        {
+            projectileGroup.UpdateRotate();
+        }
       
     }
     public void OnFinishedShot()
